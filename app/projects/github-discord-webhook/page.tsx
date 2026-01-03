@@ -63,6 +63,9 @@ bun run start`}
         <NavLink href="https://github.com/alexng353/github-discord-webhook">
           Source Code
         </NavLink>
+        <NavLink href="https://railway.com/deploy/F9q9vk?referralCode=wANn9j&utm_medium=integration&utm_source=template&utm_campaign=generic">
+          Deploy to Railway
+        </NavLink>
       </div>
     </Content>
   );
