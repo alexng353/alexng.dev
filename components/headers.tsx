@@ -1,6 +1,6 @@
 "use client";
 
-import { useSnow } from "hooks/use-snow";
+import { useSnow } from "@hooks/use-snow";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import type React from "react";

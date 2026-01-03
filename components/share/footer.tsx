@@ -1,4 +1,4 @@
-import styles from "../../styles/bar.module.css";
+import styles from "@styles/bar.module.css";
 
 export default function Footer() {
   return (

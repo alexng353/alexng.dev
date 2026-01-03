@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type React from "react";
-import { NavButton } from "./styled-mui";
+import { NavButton } from "./ui";
 
 function InlineHref({
   href,

@@ -16,37 +16,42 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     // paths
-    "rootDir": ".",
-    "baseUrl": ".",
     "paths": {
       "@components/*": [
-        "components/*"
+        "./components/*"
       ],
       "@styles/*": [
-        "styles/*"
+        "./styles/*"
       ],
       "@lib/*": [
-        "lib/*"
+        "./lib/*"
       ],
       "@pages/*": [
-        "pages/*"
+        "./app/*"
       ],
       "@public/*": [
-        "public/*"
+        "./public/*"
       ],
       "@hooks/*": [
-        "hooks/*"
+        "./hooks/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.mjs"
+    "next.config.mjs",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

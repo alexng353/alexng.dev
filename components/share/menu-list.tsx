@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useId, useRef, useState } from "react";
-import { MenuButton } from "../styled-mui";
+import { MenuButton } from "../ui";
 import menuItems from "./menuItems.json";
 
 // don't forget to make this into the json version of menulist
