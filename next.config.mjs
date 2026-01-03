@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.ayo.icu",
+        hostname: "cdn.alexng.dev",
         port: "",
         pathname: "/**",
       },

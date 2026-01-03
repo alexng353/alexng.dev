@@ -44,7 +44,7 @@ function Projects() {
         <Headers
           title="Alexander Ng | projects"
           description="This is a list of projects I've worked on, which mostly consist of a list of tools I've made."
-          image="https://cdn.ayo.icu/assets/ayo.icu/{season}/projects.png"
+          image="https://cdn.alexng.dev/assets/ayo.icu/{season}/projects.png"
           imageAlt="Projects"
         />
       </Head>
@@ -72,7 +72,7 @@ function Projects() {
             <div className="grid place-items-center mt-4">
               {showCatGif && (
                 <Image
-                  src="https://cdn.ayo.icu/assets/ayo.icu/cat.webp"
+                  src="https://cdn.alexng.dev/assets/ayo.icu/cat.webp"
                   alt="cat"
                   width={400}
                   height={400}

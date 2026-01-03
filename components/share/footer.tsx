@@ -7,7 +7,7 @@ export default function Footer() {
       className={styles.footer}
     >
       <div className="container mx-auto pt-4 pb-4 text-center text-gray-400">
-        © ayo icu. All rights reserved.
+        © Alexander Ng. All rights reserved.
       </div>
     </div>
   );

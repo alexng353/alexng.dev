@@ -11,7 +11,7 @@ export default function About() {
       <Headers
         title="Alexander Ng | about"
         description="About me"
-        image="https://cdn.ayo.icu/assets/ayo.icu/{season}/about.png"
+        image="https://cdn.alexng.dev/assets/ayo.icu/{season}/about.png"
         imageAlt="About me"
       />
       <Navbar />

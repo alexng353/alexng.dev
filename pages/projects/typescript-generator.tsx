@@ -19,7 +19,7 @@ export default function TypescriptGenerator() {
       <Headers
         title="Alexander Ng | Typescript Generator"
         description="A barebones typescript project generator written in rust."
-        image="https://cdn.ayo.icu/assets/ayo.icu/{season}/projects/typescript-generator.png"
+        image="https://cdn.alexng.dev/assets/ayo.icu/{season}/projects/typescript-generator.png"
         imageAlt="Typescript Generator"
       />
 

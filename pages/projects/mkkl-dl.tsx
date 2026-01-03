@@ -19,7 +19,7 @@ export default function TypescriptGenerator() {
       <Headers
         title="Alexander Ng | Mangakakalot Downloader"
         description="A command-line tool to download manga from Mangakakalot."
-        image="https://cdn.ayo.icu/assets/ayo.icu/{season}/projects/mkkl-dl.png"
+        image="https://cdn.alexng.dev/assets/ayo.icu/{season}/projects/mkkl-dl.png"
         imageAlt="Mangakakalot Downloader"
       />
 

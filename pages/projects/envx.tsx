@@ -19,7 +19,7 @@ export default function Envx() {
         <Headers
           title="Alexander Ng | Envx"
           description="The simplest and most secure way to share and synchronize environment variables."
-          image="https://cdn.ayo.icu/assets/ayo.icu/{season}/projects/envx.png"
+          image="https://cdn.alexng.dev/assets/ayo.icu/{season}/projects/envx.png"
           imageAlt="Envx"
         />
       </Head>

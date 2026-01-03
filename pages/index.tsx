@@ -36,7 +36,7 @@ function Home() {
       <Headers
         title="Alexander Ng | portfolio"
         description="A portfolio of some web dev named alex"
-        image="https://cdn.ayo.icu/assets/ayo.icu/{season}/home.png"
+        image="https://cdn.alexng.dev/assets/ayo.icu/{season}/home.png"
         imageAlt="Home page of alexng353's portfolio"
       />
 
