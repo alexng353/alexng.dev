@@ -64,11 +64,16 @@ function Home() {
           You can check out my{" "}
           <span className="text-green-400 hover:underline">
             <Link href="/projects">projects</Link>
-          </span>{" "}
-          and{" "}
+          </span>
+          {", "}
           <span className="text-green-400 hover:underline">
             <Link href="https://github.com/alexng353">Github</Link>
           </span>
+          {", "}
+          and{" "}
+          <Link href="/open-source" className="text-green-400 hover:underline">
+            open source
+          </Link>
           , where you can see what I&apos;m currently working on.
         </div>
 
