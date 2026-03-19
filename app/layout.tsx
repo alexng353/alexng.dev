@@ -1,7 +1,6 @@
 import { SnowScript } from "@components/snow-script";
 import "@styles/globals.css";
 import Footer from "@components/share/footer";
-import Navbar from "@components/share/navbar";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +27,6 @@ export default function RootLayout({
         <SnowScript />
       </head>
       <body className="bg-black min-h-screen">
-        <Navbar />
         {children}
         <Footer />
       </body>

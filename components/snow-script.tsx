@@ -1,3 +1,4 @@
+"use client";
 import { useSnow } from "@hooks/use-snow";
 import Script from "next/script";
 
