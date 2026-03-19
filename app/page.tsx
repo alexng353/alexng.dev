@@ -46,6 +46,13 @@ const projects = [
     tech: ["Rust"],
   },
   {
+    name: "Chad",
+    href: "https://github.com/alexng353/chad",
+    description:
+      "An autonomous plan runner for Claude Code. Feeds a markdown checklist to claude -p one iteration at a time until every step is complete.",
+    tech: ["TypeScript", "Bun", "Claude"],
+  },
+  {
     name: "ihostproxy",
     href: "/projects/ihostproxy",
     description:
@@ -59,15 +66,7 @@ const projects = [
       "Forwards GitHub webhook events to Discord channels with formatted embeds. Multi-user, multi-repo.",
     tech: ["TypeScript", "Bun"],
   },
-  {
-    name: "Cloudflare IPs",
-    href: "/projects/cf-ips",
-    description:
-      "Convenience wrapper that grabs Cloudflare IP ranges and formats them for nginx.",
-    tech: ["Next.js"],
-  },
 ];
-
 
 function Home() {
   return (
@@ -94,9 +93,14 @@ function Home() {
             have some experience with Rust, Python, and GoLang.
           </p>
           <p>
+            I&apos;ve built myself an agentic coding workflow, which revolves
+            around GitHub self-reviews and specs for my code. Claude is my new
+            best friend, and I&apos;m very excited to see what the future of
+            agentic coding will look like.
+          </p>
+          <p>
             In my spare time, I like to build stuff, play games, and learn new
-            things, which currently include Kubernetes and WASM, I&apos;m also
-            learning mobile development in Tauri.
+            things. I have a bad habit of building things on a whim.
           </p>
         </div>
 
@@ -112,11 +116,27 @@ function Home() {
           <p>
             I had my first contributions to open source merged in late 2024, and
             so far, I&apos;ve contributed to{" "}
-            <a href="https://github.com/rpgp/rpgp" className="text-green-400 hover:underline">rpgp</a>,{" "}
-            <a href="https://github.com/railwayapp/cli" className="text-green-400 hover:underline">The Railway CLI</a>,
-            {" "}and{" "}
-            <a href="https://github.com/mastra-ai/mastra" className="text-green-400 hover:underline">Mastra</a>.
-            {" "}I plan to continue contributing to rpgp, and I&apos;m looking
+            <a
+              href="https://github.com/rpgp/rpgp"
+              className="text-green-400 hover:underline"
+            >
+              rpgp
+            </a>
+            ,{" "}
+            <a
+              href="https://github.com/railwayapp/cli"
+              className="text-green-400 hover:underline"
+            >
+              The Railway CLI
+            </a>
+            , and{" "}
+            <a
+              href="https://github.com/mastra-ai/mastra"
+              className="text-green-400 hover:underline"
+            >
+              Mastra
+            </a>
+            . I plan to continue contributing to rpgp, and I&apos;m looking
             forwards to contributing to the next open source project I find
             problems with.
           </p>
@@ -133,9 +153,16 @@ function Home() {
             write my own tools, scripts and other small projects,
             &quot;abusing&quot; my abilities as a developer to make my life
             easier. You can find some of these examples on my{" "}
-            <Link href="/projects" className="text-green-400 hover:underline">projects</Link>{" "}
+            <Link href="/projects" className="text-green-400 hover:underline">
+              projects
+            </Link>{" "}
             page, or my{" "}
-            <a href="https://github.com/alexng353" className="text-green-400 hover:underline">Github</a>{" "}
+            <a
+              href="https://github.com/alexng353"
+              className="text-green-400 hover:underline"
+            >
+              Github
+            </a>{" "}
             page.
           </p>
         </div>
