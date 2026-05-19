@@ -49,7 +49,7 @@ function Projects() {
           <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
             <CLink href="https://futurity.work">Futurity</CLink>
             <CLink href="/projects/envx">Envx</CLink>
-            <CLink href="/projects/ihostproxy">ihostproxy</CLink>
+            <CLink href="/projects/rv">rv</CLink>
             <CLink href="/projects/github-discord-webhook">
               GitHub Discord Webhook Bridge
             </CLink>

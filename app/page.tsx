@@ -53,11 +53,11 @@ const projects = [
     tech: ["TypeScript", "Bun", "Claude"],
   },
   {
-    name: "ihostproxy",
-    href: "/projects/ihostproxy",
+    name: "rv",
+    href: "/projects/rv",
     description:
-      "Self-hosted SOCKS5 proxy with a web UI for credential management and IP whitelisting.",
-    tech: ["Go", "Docker"],
+      "A toy text editor in Rust. Flicker-free, hand-written, vim motions, tiling windows, fully customizable keybinds.",
+    tech: ["Rust"],
   },
   {
     name: "GitHub Discord Webhook Bridge",
