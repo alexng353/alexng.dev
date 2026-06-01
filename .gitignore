@@ -17,6 +17,9 @@
 # typescript
 *.tsbuildinfo
 
+# local-only blog drafts (never published)
+content/drafts/
+
 # production
 /build
 

@@ -1,3 +1,4 @@
+import { DraftBadge } from "@components/blog/draft-badge";
 import Content from "@components/content";
 import { formatDate, getAllPosts } from "@lib/blog";
 import type { Metadata } from "next";
@@ -29,8 +30,11 @@ export default function Blog() {
               href={`/blog/${post.slug}`}
               className="group flex flex-col gap-2 border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 hover:border-green-500 transition-colors"
             >
-              <span className="text-green-600 dark:text-green-400 group-hover:underline font-medium text-lg">
-                {post.title}
+              <span className="flex items-center gap-2">
+                <span className="text-green-600 dark:text-green-400 group-hover:underline font-medium text-lg">
+                  {post.title}
+                </span>
+                {post.draft && <DraftBadge />}
               </span>
               <span className="text-gray-500 text-xs">
                 {[formatDate(post.date), `${post.readingTime} min read`]

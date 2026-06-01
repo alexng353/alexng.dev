@@ -9,6 +9,15 @@ import { CONTENT_VERSION } from "./content-version";
 export const _contentVersion = CONTENT_VERSION;
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+// Drafts live in a gitignored dir: visible in local dev, excluded from a
+// production build, and never committed — so they can't reach the deploy.
+const DRAFTS_DIR = path.join(process.cwd(), "content", "drafts");
+
+function contentDirs(): string[] {
+  return process.env.NODE_ENV === "production"
+    ? [BLOG_DIR]
+    : [BLOG_DIR, DRAFTS_DIR];
+}
 
 export type PostMeta = {
   slug: string;
@@ -19,6 +28,8 @@ export type PostMeta = {
   tags: string[];
   /** estimated reading time in minutes */
   readingTime: number;
+  /** true for an unpublished draft (only ever surfaced in local dev) */
+  draft: boolean;
 };
 
 export type Post = PostMeta & { content: string };
@@ -36,27 +47,36 @@ function toDateString(value: unknown): string {
 }
 
 export function getPostSlugs(): string[] {
-  if (!fs.existsSync(BLOG_DIR)) return [];
-  return fs
-    .readdirSync(BLOG_DIR)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => file.replace(/\.md$/, ""));
+  const slugs = new Set<string>();
+  for (const dir of contentDirs()) {
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir)) {
+      if (file.endsWith(".md")) slugs.add(file.replace(/\.md$/, ""));
+    }
+  }
+  return [...slugs];
 }
 
 export function getPostBySlug(slug: string): Post | null {
-  const fullPath = path.join(BLOG_DIR, `${slug}.md`);
-  if (!fs.existsSync(fullPath)) return null;
+  // BLOG_DIR is checked first, so a published post shadows a draft of the
+  // same slug.
+  for (const dir of contentDirs()) {
+    const fullPath = path.join(dir, `${slug}.md`);
+    if (!fs.existsSync(fullPath)) continue;
 
-  const { data, content } = matter(fs.readFileSync(fullPath, "utf8"));
-  return {
-    slug,
-    title: typeof data.title === "string" ? data.title : slug,
-    date: toDateString(data.date),
-    excerpt: typeof data.excerpt === "string" ? data.excerpt : "",
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-    readingTime: readingTime(content),
-    content,
-  };
+    const { data, content } = matter(fs.readFileSync(fullPath, "utf8"));
+    return {
+      slug,
+      title: typeof data.title === "string" ? data.title : slug,
+      date: toDateString(data.date),
+      excerpt: typeof data.excerpt === "string" ? data.excerpt : "",
+      tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+      readingTime: readingTime(content),
+      draft: dir === DRAFTS_DIR,
+      content,
+    };
+  }
+  return null;
 }
 
 /** All posts, newest first. */

@@ -1,11 +1,14 @@
 import { spawn } from "node:child_process";
-import { existsSync, watch } from "node:fs";
+import { mkdirSync, watch } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { writeContentVersion } from "./gen-content-version.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const watchDir = join(root, "content", "blog");
+const watchDirs = [
+  join(root, "content", "blog"),
+  join(root, "content", "drafts"),
+];
 
 // Start from a clean 0 so the module exists before `next dev` compiles it.
 writeContentVersion(0);
@@ -25,8 +28,9 @@ let counter = 0;
 // settle before we re-read from disk).
 const IGNORE = /(^\.|\.sw[a-z]$|~$|^\d{4,5}$)/;
 
-if (existsSync(watchDir)) {
-  watch(watchDir, (_event, filename) => {
+for (const dir of watchDirs) {
+  mkdirSync(dir, { recursive: true }); // ensure it exists so watch() can attach
+  watch(dir, (_event, filename) => {
     if (filename && IGNORE.test(filename)) return;
     clearTimeout(timer);
     timer = setTimeout(() => {

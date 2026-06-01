@@ -1,5 +1,6 @@
 import "highlight.js/styles/github-dark.css";
 
+import { DraftBadge } from "@components/blog/draft-badge";
 import { Markdown } from "@components/blog/markdown";
 import Content from "@components/content";
 import { formatDate, getPostBySlug, getPostSlugs } from "@lib/blog";
@@ -36,7 +37,10 @@ export default async function Post({ params }: { params: Promise<Params> }) {
   return (
     <Content>
       <article>
-        <h1 className="text-3xl">{post.title}</h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-3xl">{post.title}</h1>
+          {post.draft && <DraftBadge />}
+        </div>
         <p className="mt-2 text-gray-500 text-sm">
           {[formatDate(post.date), `${post.readingTime} min read`]
             .filter(Boolean)
