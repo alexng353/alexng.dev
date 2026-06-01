@@ -20,8 +20,8 @@ export default function RootLayout({
         <script
           async
           defer
-          data-website-id="7e5a062e-24a4-4cab-a44c-62848758bec9"
-          src="https://umami.ayo.icu/script.js"
+          data-website-id="12426aa0-229c-4c65-83d8-03f989e524dd"
+          src="https://u.alexng.dev/script.js"
         ></script>
 
         <meta name="theme-color" content="#000000" />
