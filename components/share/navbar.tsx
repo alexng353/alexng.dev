@@ -2,52 +2,50 @@ import Link from "next/link";
 import { MdContactPage } from "react-icons/md";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { ThemeToggle } from "../theme-toggle";
-
-const item =
-  "text-gray-700 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:underline";
+import styles from "./navbar.module.css";
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-black/80">
-      <div className="mx-auto flex max-w-2xl items-center gap-3 px-5 py-2.5">
+    <nav className={styles.nav}>
+      <div className={styles.inner}>
         {/* Section links — take remaining width and scroll horizontally on
             narrow screens so they never push the icons off-screen. */}
-        <div className="flex min-w-0 flex-1 gap-3 overflow-x-auto whitespace-nowrap text-sm sm:gap-4">
-          <Link href="/" className={item}>
+        <div className={styles.links}>
+          <Link href="/" className={styles.item}>
             /home
           </Link>
-          <Link href="/projects" className={item}>
+          <Link href="/projects" className={styles.item}>
             /projects
           </Link>
-          <Link href="/blog" className={item}>
+          <Link href="/blog" className={styles.item}>
             /blog
           </Link>
-          <Link href="/open-source" className={item}>
+          <Link href="/open-source" className={styles.item}>
             /open-source
           </Link>
         </div>
 
-        <div className="flex shrink-0 items-center gap-3">
+        <div className={styles.right}>
           <a
             href="https://github.com/alexng353"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className={item}
+            className={styles.item}
           >
-            <SiGithub className="h-5 w-5" />
+            <SiGithub className="size-5" />
           </a>
           <a
             href="https://www.linkedin.com/in/alexng353/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className={item}
+            className={styles.item}
           >
-            <SiLinkedin className="h-5 w-5" />
+            <SiLinkedin className="size-5" />
           </a>
-          <Link href="/contact" aria-label="Contact" className={item}>
-            <MdContactPage className="h-5 w-5" />
+          <Link href="/contact" aria-label="Contact" className={styles.item}>
+            <MdContactPage className="size-6" />
           </Link>
           <ThemeToggle />
         </div>

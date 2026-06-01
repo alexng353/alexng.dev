@@ -6,13 +6,33 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  background-color: #fff;
-  color: #111;
-  font-family: "Inter", sans-serif;
+/* Design tokens. Flip the whole theme by toggling the `.dark` class on <html>
+   (see the no-flash script + theme toggle). Reference these with var(--token)
+   from CSS modules — no per-rule dark: overrides needed. */
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --fg-muted: #4b5563; /* secondary text */
+  --fg-subtle: #6b7280; /* dates, captions */
+  --border: #e5e7eb; /* subtle lines, card edges */
+  --border-muted: #d1d5db; /* chips, inputs */
+  --accent: #16a34a; /* links / brand green */
+  --accent-hover: #22c55e;
 }
 
 html.dark {
-  background-color: #000;
-  color: #fff;
+  --bg: #000000;
+  --fg: #ffffff;
+  --fg-muted: #9ca3af;
+  --fg-subtle: #6b7280;
+  --border: #1f2937;
+  --border-muted: #374151;
+  --accent: #4ade80;
+  --accent-hover: #22c55e;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", sans-serif;
 }
