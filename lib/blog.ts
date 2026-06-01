@@ -46,12 +46,22 @@ function toDateString(value: unknown): string {
   return value ? String(value) : "";
 }
 
+// A markdown file is a post unless it's a README or starts with "_" (a handy
+// convention for scratch notes that live alongside drafts but shouldn't render).
+function isPostFile(file: string): boolean {
+  return (
+    file.endsWith(".md") &&
+    !file.startsWith("_") &&
+    file.toLowerCase() !== "readme.md"
+  );
+}
+
 export function getPostSlugs(): string[] {
   const slugs = new Set<string>();
   for (const dir of contentDirs()) {
     if (!fs.existsSync(dir)) continue;
     for (const file of fs.readdirSync(dir)) {
-      if (file.endsWith(".md")) slugs.add(file.replace(/\.md$/, ""));
+      if (isPostFile(file)) slugs.add(file.replace(/\.md$/, ""));
     }
   }
   return [...slugs];
