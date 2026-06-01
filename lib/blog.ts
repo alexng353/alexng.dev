@@ -19,7 +19,7 @@ function contentDirs(): string[] {
     : [BLOG_DIR, DRAFTS_DIR];
 }
 
-export type PostMeta = {
+type PostMeta = {
   slug: string;
   title: string;
   /** ISO date, yyyy-mm-dd */
