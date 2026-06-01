@@ -53,7 +53,7 @@ export default function Envx() {
       <pre className="bg-gray-800 text-white p-2 rounded-md my-2">
         curl -fsSL https://get.envx.sh | sh
       </pre>
-      <p className="text-gray-400">
+      <p className="text-gray-600 dark:text-gray-400">
         Windows users can download the binary directly from the releases page.
       </p>
       <div className="my-4 flex gap-2 flex-wrap">

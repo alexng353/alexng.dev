@@ -4,7 +4,6 @@ import { ListItem } from "@components/list-item";
 import { SnowBanner } from "@components/snow-banner";
 import styles from "@styles/Home.module.css";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   SiDocker,
@@ -13,6 +12,7 @@ import {
   SiGithub,
   SiGithubactions,
   SiMongodb,
+  SiMysql,
   SiNextdotjs as SiNextDotJs,
   SiNodedotjs as SiNodeDotJs,
   SiPostgresql,
@@ -22,6 +22,7 @@ import {
   SiRedis,
   SiRust,
   SiTailwindcss,
+  SiTauri,
   SiTypescript,
 } from "react-icons/si";
 
@@ -83,7 +84,7 @@ function Home() {
             I&apos;m currently working as a{" "}
             <a
               href="https://futurity.work"
-              className="text-green-400 hover:underline"
+              className="text-green-600 dark:text-green-400 hover:underline"
             >
               Founding Software Engineer at Futurity
             </a>
@@ -102,6 +103,16 @@ function Home() {
             In my spare time, I like to build stuff, play games, and learn new
             things. I have a bad habit of building things on a whim.
           </p>
+          <p>
+            If you want to hear more about me, read my{" "}
+            <Link
+              href="/blog"
+              className="text-green-600 dark:text-green-400 hover:underline"
+            >
+              blog
+            </Link>
+            .
+          </p>
         </div>
 
         <h2 className="text-3xl mt-10 mb-4">Projects</h2>
@@ -118,21 +129,21 @@ function Home() {
             so far, I&apos;ve contributed to{" "}
             <a
               href="https://github.com/rpgp/rpgp"
-              className="text-green-400 hover:underline"
+              className="text-green-600 dark:text-green-400 hover:underline"
             >
               rpgp
             </a>
             ,{" "}
             <a
               href="https://github.com/railwayapp/cli"
-              className="text-green-400 hover:underline"
+              className="text-green-600 dark:text-green-400 hover:underline"
             >
               The Railway CLI
             </a>
             , and{" "}
             <a
               href="https://github.com/mastra-ai/mastra"
-              className="text-green-400 hover:underline"
+              className="text-green-600 dark:text-green-400 hover:underline"
             >
               Mastra
             </a>
@@ -153,13 +164,16 @@ function Home() {
             write my own tools, scripts and other small projects,
             &quot;abusing&quot; my abilities as a developer to make my life
             easier. You can find some of these examples on my{" "}
-            <Link href="/projects" className="text-green-400 hover:underline">
+            <Link
+              href="/projects"
+              className="text-green-600 dark:text-green-400 hover:underline"
+            >
               projects
             </Link>{" "}
             page, or my{" "}
             <a
               href="https://github.com/alexng353"
-              className="text-green-400 hover:underline"
+              className="text-green-600 dark:text-green-400 hover:underline"
             >
               Github
             </a>{" "}
@@ -187,8 +201,8 @@ function Home() {
           <ListItem icon={SiMongodb} text="MongoDB" />
           <ListItem icon={SiPostgresql} text="PostgreSQL" />
           <ListItem icon={SiRedis} text="Redis" />
-          <MySQL />
-          <Tauri />
+          <ListItem icon={SiMysql} text="MySQL" />
+          <ListItem icon={SiTauri} text="Tauri" />
         </ul>
       </Content>
     </>
@@ -213,17 +227,19 @@ function ProjectCard({
   return (
     <LinkComponent
       href={href}
-      className="group flex flex-col gap-2 border border-gray-800 rounded-lg px-4 py-3 hover:border-green-500 transition-colors"
+      className="group flex flex-col gap-2 border border-gray-200 dark:border-gray-800 rounded-lg px-4 py-3 hover:border-green-500 transition-colors"
     >
-      <span className="text-green-400 group-hover:underline font-medium text-lg">
+      <span className="text-green-600 dark:text-green-400 group-hover:underline font-medium text-lg">
         {name}
       </span>
-      <span className="text-gray-400 text-sm">{description}</span>
+      <span className="text-gray-600 dark:text-gray-400 text-sm">
+        {description}
+      </span>
       <div className="flex gap-2 flex-wrap">
         {tech.map((t) => (
           <span
             key={t}
-            className="text-xs px-2 py-0.5 rounded-full border border-gray-700 text-gray-300"
+            className="text-xs px-2 py-0.5 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
           >
             {t}
           </span>
@@ -232,33 +248,3 @@ function ProjectCard({
     </LinkComponent>
   );
 }
-
-const Tauri = () => (
-  <li className="flex space-x-2 items-center">
-    <span>
-      <Image
-        width={32}
-        height={32}
-        src="/tauri.png"
-        alt="Tauri"
-        className="h-8 w-8 select-none"
-      />
-    </span>
-    <span>Tauri</span>
-  </li>
-);
-
-const MySQL = () => (
-  <li className="flex space-x-2 items-center">
-    <span>
-      <Image
-        width={32}
-        height={32}
-        src="/MySQL.png"
-        alt="MySQL"
-        className="h-8 w-8 select-none"
-      />
-    </span>
-    <span>MySQL</span>
-  </li>
-);

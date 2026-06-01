@@ -1,14 +1,22 @@
 import { SnowScript } from "@components/snow-script";
 import "@styles/globals.css";
 import Footer from "@components/share/footer";
+import { ThemeToggle } from "@components/theme-toggle";
+
+// Applied before first paint so a saved "light" choice doesn't flash dark.
+// Default (no stored value) stays dark, matching <html class="dark">.
+const NO_FLASH_THEME = `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme bootstrap must run before paint */}
+        <script dangerouslySetInnerHTML={{ __html: NO_FLASH_THEME }} />
         <script
           async
           defer
@@ -26,7 +34,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <SnowScript />
       </head>
-      <body className="bg-black min-h-screen">
+      <body className="bg-white dark:bg-black min-h-screen">
+        <ThemeToggle />
         {children}
         <Footer />
       </body>

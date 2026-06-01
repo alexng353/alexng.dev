@@ -22,7 +22,7 @@
   background-color: transparent;
   padding: 8px 16px;
   border-radius: 8px;
-  color: white;
+  color: inherit;
   transition: all 150ms ease;
   cursor: pointer;
   text-decoration: underline;
@@ -88,7 +88,7 @@
 .textFieldInput {
   font-family: IBM Plex Sans, sans-serif;
   font-size: 1rem;
-  color: rgb(255 255 255);
+  color: inherit;
   background-color: transparent;
   padding: 8px 12px;
   border-radius: 4px;
@@ -106,5 +106,6 @@
 }
 
 .textFieldInput::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: inherit;
+  opacity: 0.5;
 }

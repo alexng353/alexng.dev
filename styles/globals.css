@@ -7,7 +7,12 @@
 @tailwind utilities;
 
 html {
+  background-color: #fff;
+  color: #111;
+  font-family: "Inter", sans-serif;
+}
+
+html.dark {
   background-color: #000;
   color: #fff;
-  font-family: "Inter", sans-serif;
 }

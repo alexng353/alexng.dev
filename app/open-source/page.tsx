@@ -9,7 +9,10 @@ const Link = ({
   children: React.ReactNode;
 }) => {
   return (
-    <_Link href={href} className="text-green-400 hover:underline">
+    <_Link
+      href={href}
+      className="text-green-600 dark:text-green-400 hover:underline"
+    >
       {children}
     </_Link>
   );

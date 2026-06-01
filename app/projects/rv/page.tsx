@@ -14,7 +14,7 @@ export default function Rv() {
       <div className="flex justify-center">
         <h1 className="text-3xl">rv</h1>
       </div>
-      <p className="mt-4 text-center italic text-gray-400">
+      <p className="mt-4 text-center italic text-gray-600 dark:text-gray-400">
         In an era of AI slop, it must be rare to find human slop, no?
       </p>
       <p className="mt-4">
@@ -35,7 +35,7 @@ export default function Rv() {
         <li>Fully customizable keybinds via keymap and config file</li>
       </ul>
       <h2 className="text-2xl mt-4">Roadmap</h2>
-      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-400">
+      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-600 dark:text-gray-400">
         <li>Advanced vim motions</li>
         <li>Chords</li>
         <li>Typed scripting language</li>
