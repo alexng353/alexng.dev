@@ -16,8 +16,25 @@ export default function Blog() {
     <Content className="w-full">
       <h1 className="text-3xl">Blog</h1>
       <p className="mt-2 text-gray-600 dark:text-gray-400">
-        Occasional writing about code, open source, and the things I build on a
-        whim.
+        Writing about code, open source, side projects and life. Heavily
+        inspired by Paul Graham's essays{" "}
+        <a
+          className="text-green-600 dark:text-green-400 hover:underline"
+          href="https://www.paulgraham.com/kids.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          "Having Kids"
+        </a>
+        {" and "}
+        <a
+          className="text-green-600 dark:text-green-400 hover:underline"
+          href="https://www.paulgraham.com/top.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          "The Top Idea in Your Mind."
+        </a>
       </p>
 
       <div className="mt-8 flex flex-col gap-4">

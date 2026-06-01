@@ -20,9 +20,6 @@ export default function Navbar() {
           <Link href="/blog" className={styles.item}>
             /blog
           </Link>
-          <Link href="/open-source" className={styles.item}>
-            /open-source
-          </Link>
         </div>
 
         <div className={styles.right}>
