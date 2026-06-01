@@ -1,7 +1,7 @@
 import { SnowScript } from "@components/snow-script";
 import "@styles/globals.css";
 import Footer from "@components/share/footer";
-import { ThemeToggle } from "@components/theme-toggle";
+import Navbar from "@components/share/navbar";
 
 // Applied before first paint so a saved "light" choice doesn't flash dark.
 // Default (no stored value) stays dark, matching <html class="dark">.
@@ -35,7 +35,7 @@ export default function RootLayout({
         <SnowScript />
       </head>
       <body className="bg-white dark:bg-black min-h-screen">
-        <ThemeToggle />
+        <Navbar />
         {children}
         <Footer />
       </body>

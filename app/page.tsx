@@ -1,5 +1,4 @@
 import Content from "@components/content";
-import { HeadIcons } from "@components/home/head-icons";
 import { ListItem } from "@components/list-item";
 import { SnowBanner } from "@components/snow-banner";
 import styles from "@styles/Home.module.css";
@@ -74,8 +73,6 @@ function Home() {
     <>
       <SnowBanner />
       <Content>
-        <HeadIcons />
-
         <h1 className="text-4xl tracking-wide mt-1">Alexander Ng</h1>
         <div className="flex flex-col gap-4 mt-3">
           <p>
