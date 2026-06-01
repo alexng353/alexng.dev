@@ -8,14 +8,9 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        {/* Section links — take remaining width and scroll horizontally on
-            narrow screens so they never push the icons off-screen. */}
         <div className={styles.links}>
           <Link href="/" className={styles.item}>
             /home
-          </Link>
-          <Link href="/projects" className={styles.item}>
-            /projects
           </Link>
           <Link href="/blog" className={styles.item}>
             /blog

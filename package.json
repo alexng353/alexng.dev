@@ -9,6 +9,7 @@
     "start": "next start",
     "export": "next build && next export",
     "lint": "biome",
+    "check": "tsgo --noEmit",
     "draft:save": "git -C content/drafts add -A && git -C content/drafts commit -m \"wip $(date +%FT%H:%M)\" && git -C content/drafts push",
     "draft:sync": "git -C content/drafts pull --rebase",
     "draft:status": "git -C content/drafts status -s"
