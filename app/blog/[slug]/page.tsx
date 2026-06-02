@@ -26,6 +26,14 @@ export async function generateMetadata({
   return {
     title: `Alexander Ng | ${post.title}`,
     description: post.excerpt || undefined,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt || undefined,
+      url: `/blog/${slug}`,
+      publishedTime: post.date || undefined,
+    },
   };
 }
 

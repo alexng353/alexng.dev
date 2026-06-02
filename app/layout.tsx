@@ -2,6 +2,26 @@ import { SnowScript } from "@components/snow-script";
 import "@styles/globals.css";
 import Footer from "@components/share/footer";
 import Navbar from "@components/share/navbar";
+import { SITE, SITE_URL } from "@lib/site";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: SITE.title,
+  description: SITE.description,
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    url: SITE_URL,
+    locale: SITE.locale,
+  },
+  twitter: { card: "summary_large_image" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": [{ url: "/feed.xml", title: SITE.name }] },
+  },
+};
 
 // Applied before first paint so a saved "light" choice doesn't flash dark.
 // Default (no stored value) stays dark, matching <html class="dark">.
@@ -25,7 +45,6 @@ export default function RootLayout({
         ></script>
 
         <meta name="theme-color" content="#000000" />
-        <meta property="og:type" content="website" />
         <meta charSet="utf-8" />
         <SnowScript />
       </head>
@@ -33,6 +52,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
