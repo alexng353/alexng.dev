@@ -76,7 +76,7 @@ function Home() {
         <h1 className="text-4xl tracking-wide mt-1">Alexander Ng</h1>
         <div className="flex flex-col gap-4 mt-3">
           <p>
-            An 19-year-old Full Stack web developer based in{" "}
+            A 20-year-old Full Stack web developer based in{" "}
             <span className="text-fuchsia-500">Vancouver, Canada. </span>
             I&apos;m currently working as a{" "}
             <a

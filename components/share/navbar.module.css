@@ -47,6 +47,14 @@
   text-decoration: underline;
 }
 
+.brand {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+}
+
 @media (min-width: 640px) {
   .links {
     gap: 1rem;

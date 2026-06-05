@@ -8,6 +8,9 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
+        <Link href="/" aria-label="Home" className={styles.brand}>
+          &gt;_
+        </Link>
         <div className={styles.links}>
           <Link href="/" className={styles.item}>
             /home
