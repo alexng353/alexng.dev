@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Pre-commit guard for committed JPEGs:
+#   * Every staged JPEG has its geo (GPS) EXIF stripped in place and re-staged,
+#     so a location can never enter git history. Camera settings (body, lens,
+#     ISO, shutter, aperture) are kept.
+#   * Staged base photos under photographs/ also get their <name>.thumb.jpg
+#     (re)generated and staged, so "drop a .jpg, commit" just works — the
+#     gallery never points at a missing thumbnail.
+#
+# Wired via `git config core.hooksPath .githooks` (the package.json `prepare`
+# script does this on install).
+set -euo pipefail
+shopt -s nocasematch
+
+# Null-delimited list of staged (added/copied/modified/renamed) JPEGs.
+mapfile -d '' -t files < <(
+  git diff --cached --name-only --diff-filter=ACMR -z -- \
+    '*.jpg' '*.jpeg' '*.JPG' '*.JPEG'
+)
+((${#files[@]})) || exit 0
+
+if ! command -v exiftool >/dev/null 2>&1; then
+  echo "pre-commit: exiftool not found — cannot strip geo EXIF from staged images." >&2
+  echo "            Install it and try again (commit blocked to avoid leaking a location)." >&2
+  exit 1
+fi
+
+# Split into photographs/ source photos (need a thumbnail) and everything else
+# (thumbnails, public/ assets, …) which only needs the geo strip.
+photo_sources=()
+others=()
+for f in "${files[@]}"; do
+  [ -f "$f" ] || continue # skip deletions/renames whose target is gone
+  case "$f" in
+    photographs/*.thumb.jpg | photographs/*.thumb.jpeg) others+=("$f") ;;
+    photographs/*.jpg | photographs/*.jpeg) photo_sources+=("$f") ;;
+    *) others+=("$f") ;;
+  esac
+done
+
+# Non-source JPEGs: strip geo directly with exiftool, then re-stage.
+for f in "${others[@]}"; do
+  exiftool -gps:all= -xmp:geotag= -overwrite_original -P -q -- "$f"
+  git add -- "$f"
+done
+
+# Source photos: the generator strips geo AND (re)builds the thumbnail. Then
+# stage both the photo and its thumbnail.
+if ((${#photo_sources[@]})); then
+  if ! command -v bun >/dev/null 2>&1; then
+    echo "pre-commit: bun not found — cannot generate thumbnails for staged photos." >&2
+    echo "            Install bun (or run \`bun run photos\` manually) and try again." >&2
+    exit 1
+  fi
+  bun scripts/gen-photos.mjs --force -- "${photo_sources[@]}"
+  for f in "${photo_sources[@]}"; do
+    git add -- "$f"
+    thumb="${f%.*}.thumb.jpg"
+    [ -f "$thumb" ] && git add -- "$thumb"
+  done
+fi
+
+# Backstop: refuse the commit if any staged JPEG still reports a coordinate.
+for f in "${files[@]}"; do
+  [ -f "$f" ] || continue
+  if [ -n "$(exiftool -s3 -GPSLatitude -GPSLongitude -- "$f" 2>/dev/null)" ]; then
+    echo "pre-commit: $f still has GPS data after stripping — aborting commit." >&2
+    exit 1
+  fi
+done

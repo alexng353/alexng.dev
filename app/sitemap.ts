@@ -11,6 +11,7 @@ const STATIC_ROUTES = [
   "/projects/github-discord-webhook",
   "/blog",
   "/contact",
+  "/photography",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

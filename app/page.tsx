@@ -98,7 +98,15 @@ function Home() {
           </p>
           <p>
             In my spare time, I like to build stuff, play games, and learn new
-            things. I have a bad habit of building things on a whim.
+            things. I have a bad habit of building things on a whim. I've also
+            recently picked up{" "}
+            <a
+              href="/photography"
+              className="text-green-600 dark:text-green-400 hover:underline"
+            >
+              Photography
+            </a>
+            . I really do have a lot of expensive hobbies...
           </p>
           <p>
             If you want to hear more about me, read my{" "}
