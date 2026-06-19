@@ -10,9 +10,9 @@
 //      pointing at the CDN.
 //   4. With --upload, push the photos, thumbnails, and manifest to R2 via rclone.
 //
-//   bun run photos             # strip + thumbnail + rewrite the manifest
+//   bun run photos             # strip + thumbnail + rewrite the manifest + sync R2
 //   bun run photos --force     # also rebuild every thumbnail
-//   bun run photos --upload    # ...and sync the bytes to R2 (needs the remote)
+//   bun run photos:local       # local-only regenerate, no R2 sync
 //
 // The running site never touches these files — it reads lib/photographs.json
 // and loads the bytes straight from the CDN. Config (env, with defaults):
@@ -157,6 +157,42 @@ function resolveR2() {
   return null;
 }
 
+export function rcloneSyncCommands({ photosDir, manifest, dest }) {
+  return [
+    [
+      "copy",
+      photosDir,
+      dest,
+      "--include",
+      "*.jpg",
+      "--include",
+      "*.jpeg",
+      "--progress",
+    ],
+    ["copyto", manifest, `${dest}/photographs.json`, "--progress"],
+    [
+      "check",
+      photosDir,
+      dest,
+      "--include",
+      "*.jpg",
+      "--include",
+      "*.jpeg",
+      "--one-way",
+      "--size-only",
+    ],
+    [
+      "check",
+      path.dirname(manifest),
+      dest,
+      "--include",
+      "photographs.json",
+      "--one-way",
+      "--size-only",
+    ],
+  ];
+}
+
 function uploadToR2() {
   const r2 = resolveR2();
   if (!r2) {
@@ -170,29 +206,19 @@ function uploadToR2() {
   }
   requireTool("rclone", "Install rclone (the R2 upload uses its S3 backend).");
   const dest = `${r2.remote}/${PREFIX}`;
+  const [copyPhotos, copyManifest, checkPhotos, checkManifest] =
+    rcloneSyncCommands({ photosDir: PHOTOS_DIR, manifest: MANIFEST, dest });
+
   console.log(`\nUploading photos + thumbnails to ${dest} …`);
   // rclone copy skips files already present with the same size — so re-running
   // only ships what changed. Both *.jpg and *.thumb.jpg match the filter.
-  execFileSync(
-    "rclone",
-    [
-      "copy",
-      PHOTOS_DIR,
-      dest,
-      "--include",
-      "*.jpg",
-      "--include",
-      "*.jpeg",
-      "--progress",
-    ],
-    { stdio: "inherit", env: r2.env },
-  );
+  execFileSync("rclone", copyPhotos, { stdio: "inherit", env: r2.env });
   console.log(`\nUploading manifest to ${dest}/photographs.json …`);
-  execFileSync(
-    "rclone",
-    ["copyto", MANIFEST, `${dest}/photographs.json`, "--progress"],
-    { stdio: "inherit", env: r2.env },
-  );
+  execFileSync("rclone", copyManifest, { stdio: "inherit", env: r2.env });
+  console.log(`\nVerifying R2 photos at ${dest} …`);
+  execFileSync("rclone", checkPhotos, { stdio: "inherit", env: r2.env });
+  console.log(`\nVerifying R2 manifest at ${dest}/photographs.json …`);
+  execFileSync("rclone", checkManifest, { stdio: "inherit", env: r2.env });
 }
 
 async function main() {
@@ -250,7 +276,9 @@ async function main() {
   if (doUpload) uploadToR2();
 }
 
-main().catch((err) => {
-  console.error(err.message ?? err);
-  process.exit(1);
-});
+if (import.meta.path === Bun.main) {
+  main().catch((err) => {
+    console.error(err.message ?? err);
+    process.exit(1);
+  });
+}

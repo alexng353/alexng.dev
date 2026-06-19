@@ -1,37 +1,38 @@
 #!/usr/bin/env bash
-# Strip geo (GPS) EXIF from any staged JPEG before it enters git history, then
-# re-stage it. Camera settings are kept; only location is removed.
-#
-# Portfolio photos no longer live in git (they're gitignored and served from
-# the CDN — the geo gate for those runs in scripts/gen-photos.mjs at upload
-# time). This hook is the catch-all for any *other* JPEG that lands in the repo
-# (e.g. public/ assets). Wired via `git config core.hooksPath .githooks` (the
-# package.json `prepare` script does this on install).
+# Publish the portfolio photo manifest/assets, then strip geo (GPS) EXIF from
+# any other staged JPEG before it enters git history. Camera settings are kept;
+# only location is removed.
 set -euo pipefail
+
+bun run photos
+git add lib/photographs.json
 
 mapfile -d '' -t files < <(
   git diff --cached --name-only --diff-filter=ACMR -z -- \
     '*.jpg' '*.jpeg' '*.JPG' '*.JPEG'
 )
-((${#files[@]})) || exit 0
 
-if ! command -v exiftool >/dev/null 2>&1; then
-  echo "pre-commit: exiftool not found — cannot strip geo EXIF from staged images." >&2
-  echo "            Install it and try again (commit blocked to avoid leaking a location)." >&2
-  exit 1
-fi
-
-for f in "${files[@]}"; do
-  [ -f "$f" ] || continue # skip deletions/renames whose target is gone
-  exiftool -gps:all= -xmp:geotag= -overwrite_original -P -q -- "$f"
-  git add -- "$f"
-done
-
-# Backstop: refuse the commit if any staged JPEG still reports a coordinate.
-for f in "${files[@]}"; do
-  [ -f "$f" ] || continue
-  if [ -n "$(exiftool -s3 -GPSLatitude -GPSLongitude -- "$f" 2>/dev/null)" ]; then
-    echo "pre-commit: $f still has GPS data after stripping — aborting commit." >&2
+if ((${#files[@]})); then
+  if ! command -v exiftool >/dev/null 2>&1; then
+    echo "pre-commit: exiftool not found — cannot strip geo EXIF from staged images." >&2
+    echo "            Install it and try again (commit blocked to avoid leaking a location)." >&2
     exit 1
   fi
-done
+
+  for f in "${files[@]}"; do
+    [ -f "$f" ] || continue # skip deletions/renames whose target is gone
+    exiftool -gps:all= -xmp:geotag= -overwrite_original -P -q -- "$f"
+    git add -- "$f"
+  done
+
+  # Backstop: refuse the commit if any staged JPEG still reports a coordinate.
+  for f in "${files[@]}"; do
+    [ -f "$f" ] || continue
+    if [ -n "$(exiftool -s3 -GPSLatitude -GPSLongitude -- "$f" 2>/dev/null)" ]; then
+      echo "pre-commit: $f still has GPS data after stripping — aborting commit." >&2
+      exit 1
+    fi
+  done
+fi
+
+bun check

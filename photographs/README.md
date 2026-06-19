@@ -19,11 +19,10 @@ DSC03595.thumb.jpg  generated thumbnail (uploaded; grid source)
 ## Adding / updating photos
 
 1. Drop full-resolution `.jpg` / `.jpeg` files in here (no `.thumb` suffix).
-2. Generate, then upload:
+2. Generate, upload, and verify the R2 sync:
 
    ```sh
-   bun run photos          # strip geo, build thumbs, rewrite the manifest
-   bun run photos:upload   # ...and sync the bytes to R2 (needs the remote)
+   bun run photos
    ```
 3. Commit `lib/photographs.json` (the manifest). The images and a copy of the
    manifest are already live on the CDN, so the gallery updates as soon as the
@@ -37,8 +36,11 @@ DSC03595.thumb.jpg  generated thumbnail (uploaded; grid source)
 - **Builds `*.thumb.jpg`** (long edge 900px, q72), metadata dropped.
 - **Records metadata** (title from XMP `dc:title` → EXIF caption → filename;
   settings; dimensions; capture date) into the manifest, sorted newest-first.
-- With `--upload`, **uploads `lib/photographs.json`** to the same R2 prefix as
-  `photographs.json`.
+- **Uploads and verifies R2**: photos, thumbnails, and `lib/photographs.json`
+  as `photographs.json` in the same R2 prefix.
+
+For local-only manifest regeneration without touching R2, use
+`bun run photos:local`.
 
 ## Upload config (env, with defaults)
 
