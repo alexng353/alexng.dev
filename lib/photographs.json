@@ -64,6 +64,22 @@
     }
   },
   {
+    "name": "DSC04379",
+    "title": "My Girl Looking Over a Bridge",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.thumb.jpg",
+    "width": 4340,
+    "height": 3255,
+    "date": "2026-06-10",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/320s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
     "name": "DSC04749",
     "title": "The Flock",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04749.jpg",
@@ -86,22 +102,6 @@
     "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04694.thumb.jpg",
     "width": 2538,
     "height": 3384,
-    "date": "2026-06-10",
-    "settings": {
-      "body": "Sony ILCE-7M3",
-      "lens": "FE 85mm F1.8",
-      "iso": "ISO 100",
-      "shutter": "1/320s",
-      "aperture": "f/1.8"
-    }
-  },
-  {
-    "name": "DSC04379",
-    "title": "Girl Looking Over a Bridge",
-    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.jpg",
-    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.thumb.jpg",
-    "width": 4340,
-    "height": 3255,
     "date": "2026-06-10",
     "settings": {
       "body": "Sony ILCE-7M3",

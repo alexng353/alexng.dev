@@ -8,7 +8,7 @@
 //   3. Read each photo's metadata (title, settings, dimensions, capture date)
 //      and write the committed manifest lib/photographs.json, with image URLs
 //      pointing at the CDN.
-//   4. With --upload, push the photos + thumbnails to R2 via rclone.
+//   4. With --upload, push the photos, thumbnails, and manifest to R2 via rclone.
 //
 //   bun run photos             # strip + thumbnail + rewrite the manifest
 //   bun run photos --force     # also rebuild every thumbnail
@@ -185,6 +185,12 @@ function uploadToR2() {
       "*.jpeg",
       "--progress",
     ],
+    { stdio: "inherit", env: r2.env },
+  );
+  console.log(`\nUploading manifest to ${dest}/photographs.json …`);
+  execFileSync(
+    "rclone",
+    ["copyto", MANIFEST, `${dest}/photographs.json`, "--progress"],
     { stdio: "inherit", env: r2.env },
   );
 }

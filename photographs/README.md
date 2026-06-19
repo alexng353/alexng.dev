@@ -25,8 +25,9 @@ DSC03595.thumb.jpg  generated thumbnail (uploaded; grid source)
    bun run photos          # strip geo, build thumbs, rewrite the manifest
    bun run photos:upload   # ...and sync the bytes to R2 (needs the remote)
    ```
-3. Commit `lib/photographs.json` (the manifest). The images are already live on
-   the CDN, so the gallery updates as soon as the manifest deploys.
+3. Commit `lib/photographs.json` (the manifest). The images and a copy of the
+   manifest are already live on the CDN, so the gallery updates as soon as the
+   committed manifest deploys.
 
 `bun run photos` does, per source file:
 
@@ -36,6 +37,8 @@ DSC03595.thumb.jpg  generated thumbnail (uploaded; grid source)
 - **Builds `*.thumb.jpg`** (long edge 900px, q72), metadata dropped.
 - **Records metadata** (title from XMP `dc:title` → EXIF caption → filename;
   settings; dimensions; capture date) into the manifest, sorted newest-first.
+- With `--upload`, **uploads `lib/photographs.json`** to the same R2 prefix as
+  `photographs.json`.
 
 ## Upload config (env, with defaults)
 
