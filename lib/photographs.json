@@ -1,0 +1,146 @@
+[
+  {
+    "name": "DSC05418",
+    "title": "Sunrise",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05418.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05418.thumb.jpg",
+    "width": 6000,
+    "height": 4000,
+    "date": "2026-06-12",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/8000s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
+    "name": "DSC05354",
+    "title": "Aura Farming Crow",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05354.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05354.thumb.jpg",
+    "width": 6000,
+    "height": 4000,
+    "date": "2026-06-12",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/125s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
+    "name": "DSC05318",
+    "title": "Downtown at Dawn",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05318.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05318.thumb.jpg",
+    "width": 4000,
+    "height": 6000,
+    "date": "2026-06-12",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 640",
+      "shutter": "1/40s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
+    "name": "DSC05308",
+    "title": "Vancouver Harbour",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05308.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05308.thumb.jpg",
+    "width": 3459,
+    "height": 4612,
+    "date": "2026-06-12",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 1600",
+      "shutter": "1/800s",
+      "aperture": "f/1.4"
+    }
+  },
+  {
+    "name": "DSC04749",
+    "title": "The Flock",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04749.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04749.thumb.jpg",
+    "width": 5280,
+    "height": 2883,
+    "date": "2026-06-10",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/3200s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
+    "name": "DSC04694",
+    "title": "Roses",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04694.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04694.thumb.jpg",
+    "width": 2538,
+    "height": 3384,
+    "date": "2026-06-10",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/320s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
+    "name": "DSC04379",
+    "title": "Girl Looking Over a Bridge",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.thumb.jpg",
+    "width": 4340,
+    "height": 3255,
+    "date": "2026-06-10",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/320s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
+    "name": "DSC03721",
+    "title": "The World is my Bench",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03721.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03721.thumb.jpg",
+    "width": 3801,
+    "height": 5068,
+    "date": "2026-06-08",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/2000s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
+    "name": "DSC03595",
+    "title": "Dogs are Good Subjects too",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03595.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03595.thumb.jpg",
+    "width": 4020,
+    "height": 5364,
+    "date": "2026-06-08",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/6400s",
+      "aperture": "f/2"
+    }
+  }
+]

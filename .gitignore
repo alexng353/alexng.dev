@@ -38,3 +38,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# photography source files — bytes live on the CDN (cdn.alexng.dev), not git.
+# The committed lib/photographs.json manifest is the source of truth for the
+# site; `bun run photos --upload` regenerates it and pushes images to R2.
+/photographs/*.jpg
+/photographs/*.jpeg

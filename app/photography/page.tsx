@@ -1,5 +1,5 @@
 import { Gallery } from "@components/photography/gallery";
-import { listPhotos } from "@lib/photos";
+import { getPhotos } from "@lib/photos";
 import { SITE_URL } from "@lib/site";
 import type { Metadata } from "next";
 
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function PhotographyPage() {
-  const photos = await listPhotos();
+export default function PhotographyPage() {
+  const photos = getPhotos();
 
   return (
     <main className="mb-20 mt-10 px-5">
