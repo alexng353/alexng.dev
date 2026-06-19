@@ -24,8 +24,7 @@ export default async function PhotographyPage() {
         <h1 className="text-4xl tracking-wide">Photography</h1>
         <p className="mt-3 max-w-2xl text-gray-600 dark:text-gray-400">
           A recently-picked-up, expensive hobby. Hover a frame to see what it
-          was shot with; click to view it full-size. Location data is stripped
-          from every file before it&apos;s served.
+          was shot with; click to view it full-size.
         </p>
 
         {photos.length === 0 ? (
