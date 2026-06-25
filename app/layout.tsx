@@ -5,6 +5,22 @@ import Navbar from "@components/share/navbar";
 import { SITE, SITE_URL } from "@lib/site";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import { Inter, Roboto_Mono } from "next/font/google";
+
+// Self-hosted at build time, so no render-blocking request to Google Fonts.
+// Exposed as CSS variables consumed by globals.css / *.module.css.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  weight: "200",
+  display: "swap",
+  variable: "--font-roboto-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,7 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`dark ${inter.variable} ${robotoMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme bootstrap must run before paint */}
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH_THEME }} />
