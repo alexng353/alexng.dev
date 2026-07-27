@@ -37,7 +37,10 @@ DSC03595.thumb.jpg  generated thumbnail (uploaded; grid source)
 - **Records metadata** (title from XMP `dc:title` → EXIF caption → filename;
   settings; dimensions; capture date) into the manifest, sorted newest-first.
 - **Uploads and verifies R2**: photos, thumbnails, and `lib/photographs.json`
-  as `photographs.json` in the same R2 prefix.
+  as `photographs.json` in the same R2 prefix. The image bytes ship *before*
+  the manifest is written, so `next dev` never hot-reloads a gallery pointing
+  at CDN URLs that are still 404 (a browser caches that failure, and the photo
+  stays broken until a hard refresh).
 
 For local-only manifest regeneration without touching R2, use
 `bun run photos:local`.

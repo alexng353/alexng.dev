@@ -193,7 +193,8 @@ export function rcloneSyncCommands({ photosDir, manifest, dest }) {
   ];
 }
 
-function uploadToR2() {
+/** Resolve credentials and pre-build the rclone argv once, up front. */
+function openR2() {
   const r2 = resolveR2();
   if (!r2) {
     console.error(
@@ -208,17 +209,30 @@ function uploadToR2() {
   const dest = `${r2.remote}/${PREFIX}`;
   const [copyPhotos, copyManifest, checkPhotos, checkManifest] =
     rcloneSyncCommands({ photosDir: PHOTOS_DIR, manifest: MANIFEST, dest });
+  return {
+    env: r2.env,
+    dest,
+    copyPhotos,
+    copyManifest,
+    checkPhotos,
+    checkManifest,
+  };
+}
 
-  console.log(`\nUploading photos + thumbnails to ${dest} …`);
+function uploadPhotos(r2) {
+  console.log(`\nUploading photos + thumbnails to ${r2.dest} …`);
   // rclone copy skips files already present with the same size — so re-running
   // only ships what changed. Both *.jpg and *.thumb.jpg match the filter.
-  execFileSync("rclone", copyPhotos, { stdio: "inherit", env: r2.env });
-  console.log(`\nUploading manifest to ${dest}/photographs.json …`);
-  execFileSync("rclone", copyManifest, { stdio: "inherit", env: r2.env });
-  console.log(`\nVerifying R2 photos at ${dest} …`);
-  execFileSync("rclone", checkPhotos, { stdio: "inherit", env: r2.env });
-  console.log(`\nVerifying R2 manifest at ${dest}/photographs.json …`);
-  execFileSync("rclone", checkManifest, { stdio: "inherit", env: r2.env });
+  execFileSync("rclone", r2.copyPhotos, { stdio: "inherit", env: r2.env });
+}
+
+function uploadManifest(r2) {
+  console.log(`\nUploading manifest to ${r2.dest}/photographs.json …`);
+  execFileSync("rclone", r2.copyManifest, { stdio: "inherit", env: r2.env });
+  console.log(`\nVerifying R2 photos at ${r2.dest} …`);
+  execFileSync("rclone", r2.checkPhotos, { stdio: "inherit", env: r2.env });
+  console.log(`\nVerifying R2 manifest at ${r2.dest}/photographs.json …`);
+  execFileSync("rclone", r2.checkManifest, { stdio: "inherit", env: r2.env });
 }
 
 async function main() {
@@ -267,13 +281,22 @@ async function main() {
     });
   }
 
+  // Ship the bytes *before* the manifest that points at them. `next dev`
+  // watches lib/photographs.json and hot-reloads the gallery the instant it
+  // lands, so writing it first opens a window where the browser requests a CDN
+  // URL that does not exist yet, 404s, and caches the failure — the photo then
+  // stays broken until a hard refresh. Uploading first closes that window; the
+  // worst case becomes orphaned bytes on R2 rather than broken <img> tags.
+  const r2 = doUpload ? openR2() : null;
+  if (r2) uploadPhotos(r2);
+
   entries.sort(bySortOrder);
   fs.writeFileSync(MANIFEST, `${JSON.stringify(entries, null, 2)}\n`);
   console.log(
     `✓ ${path.relative(ROOT, MANIFEST)} — ${entries.length} photo(s), ${builtThumbs} thumbnail(s) built`,
   );
 
-  if (doUpload) uploadToR2();
+  if (r2) uploadManifest(r2);
 }
 
 if (import.meta.path === Bun.main) {
