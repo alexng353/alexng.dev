@@ -60,6 +60,25 @@ export function xmpTitle(xml) {
   return raw ? decodeXmlEntities(raw) : null;
 }
 
+/**
+ * XMP dc:subject (darktable/Lightroom "Tags"/"Keywords") — an rdf:Bag of
+ * rdf:li, unlike dc:title's single-valued rdf:Alt. Lower-cased and deduped so
+ * "City" typed in darktable and "city" typed in exiftool are one tag, since
+ * these become URL segments.
+ */
+export function xmpKeywords(xml) {
+  if (!xml) return [];
+  const block = xml.match(/<dc:subject>([\s\S]*?)<\/dc:subject>/i);
+  if (!block) return [];
+  const items = block[1].matchAll(/<rdf:li\b[^>]*>([\s\S]*?)<\/rdf:li>/gi);
+  const tags = [];
+  for (const [, raw] of items) {
+    const tag = decodeXmlEntities(raw.trim()).toLowerCase();
+    if (tag && !tags.includes(tag)) tags.push(tag);
+  }
+  return tags.sort();
+}
+
 // ---------- camera settings ----------
 
 /** "SONY" -> "Sony"; leaves mixed-case makes untouched. */

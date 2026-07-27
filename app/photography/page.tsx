@@ -1,4 +1,5 @@
 import { Gallery } from "@components/photography/gallery";
+import { TagLinks } from "@components/photography/tag-links";
 import { getPhotos } from "@lib/photos";
 import { SITE_URL } from "@lib/site";
 import type { Metadata } from "next";
@@ -26,6 +27,8 @@ export default function PhotographyPage() {
           A recently-picked-up, expensive hobby. Hover a frame to see what it
           was shot with; click to view it full-size.
         </p>
+
+        <TagLinks />
 
         {photos.length === 0 ? (
           <p className="mt-10 text-gray-500">

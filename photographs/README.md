@@ -16,6 +16,26 @@ DSC03595.jpg        full resolution (uploaded; lightbox source)
 DSC03595.thumb.jpg  generated thumbnail (uploaded; grid source)
 ```
 
+## Tagging
+
+Each photo carries one tag in XMP `dc:subject` — the field darktable's tagging
+panel writes, so tag at edit time alongside the title rather than afterwards.
+By hand:
+
+```sh
+exiftool -overwrite_original -P -XMP-dc:Subject= -XMP-dc:Subject=city photo.jpg
+```
+
+(The empty assignment first clears the existing bag; without it exiftool
+appends and the photo ends up in two galleries.)
+
+Tags are lower-cased and become URL segments: `people` → `/photography/people`,
+a static page built from the same manifest. Keep the vocabulary small and give
+each photo one tag — the current set is `people`, `nature`, `city`, `animals`.
+A tag needs at least `MIN_PHOTOS_PER_TAG` photos (see `lib/photos.ts`) before it
+gets a pill and a page, so a one-off keyword can't strand a visitor on a page
+thinner than the gallery they left.
+
 ## Removing a photo
 
 Delete its `.jpg` (and `.thumb.jpg`) from here and run `bun run photos`. The

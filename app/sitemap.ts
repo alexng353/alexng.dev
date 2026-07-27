@@ -1,4 +1,5 @@
 import { getAllPosts } from "@lib/blog";
+import { getTags } from "@lib/photos";
 import { SITE_URL } from "@lib/site";
 import type { MetadataRoute } from "next";
 
@@ -24,5 +25,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: post.date ? new Date(`${post.date}T00:00:00Z`) : undefined,
   }));
 
-  return [...staticEntries, ...postEntries];
+  // Derived, not listed above: tag pages come and go with the manifest, and a
+  // hand-maintained list would outlive the tags themselves.
+  const tagEntries = getTags().map(({ tag }) => ({
+    url: `${SITE_URL}/photography/${tag}`,
+  }));
+
+  return [...staticEntries, ...tagEntries, ...postEntries];
 }

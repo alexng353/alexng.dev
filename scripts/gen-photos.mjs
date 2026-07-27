@@ -32,6 +32,7 @@ import {
   formatSettings,
   inspect,
   prettifyName,
+  xmpKeywords,
   xmpTitle,
 } from "./lib/photo-meta.mjs";
 
@@ -356,6 +357,7 @@ async function main() {
       width,
       height,
       date: dateTaken(exif),
+      tags: xmpKeywords(xmp),
       settings: formatSettings(exif),
     });
   }
