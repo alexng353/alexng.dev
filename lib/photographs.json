@@ -1,5 +1,21 @@
 [
   {
+    "name": "DSC09619",
+    "title": "Red curtain",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC09619.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC09619.thumb.jpg",
+    "width": 3804,
+    "height": 5072,
+    "date": "2026-07-18",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 640",
+      "shutter": "1/640s",
+      "aperture": "f/1.4"
+    }
+  },
+  {
     "name": "DSC01021_01",
     "title": "Dance all night",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC01021_01.jpg",
@@ -28,6 +44,22 @@
       "lens": "50mm F1.4 DG HSM | Art 018",
       "iso": "ISO 100",
       "shutter": "1/250s",
+      "aperture": "f/1.4"
+    }
+  },
+  {
+    "name": "DSC00964",
+    "title": "Reception, 11pm",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00964.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00964.thumb.jpg",
+    "width": 4023,
+    "height": 5364,
+    "date": "2026-07-18",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 640",
+      "shutter": "1/640s",
       "aperture": "f/1.4"
     }
   },
@@ -64,38 +96,6 @@
     }
   },
   {
-    "name": "DSC09619",
-    "title": "Red Curtain",
-    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC09619.jpg",
-    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC09619.thumb.jpg",
-    "width": 3804,
-    "height": 5072,
-    "date": "2026-07-18",
-    "settings": {
-      "body": "Sony ILCE-7M3",
-      "lens": "50mm F1.4 DG HSM | Art 018",
-      "iso": "ISO 640",
-      "shutter": "1/640s",
-      "aperture": "f/1.4"
-    }
-  },
-  {
-    "name": "DSC00964",
-    "title": "Reception, 11pm",
-    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00964.jpg",
-    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00964.thumb.jpg",
-    "width": 4023,
-    "height": 5364,
-    "date": "2026-07-18",
-    "settings": {
-      "body": "Sony ILCE-7M3",
-      "lens": "50mm F1.4 DG HSM | Art 018",
-      "iso": "ISO 640",
-      "shutter": "1/640s",
-      "aperture": "f/1.4"
-    }
-  },
-  {
     "name": "DSC05418",
     "title": "Sunrise",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05418.jpg",
@@ -113,7 +113,7 @@
   },
   {
     "name": "DSC05354",
-    "title": "Aura Farming Crow",
+    "title": "Aura farming crow",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05354.jpg",
     "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05354.thumb.jpg",
     "width": 6000,
@@ -129,7 +129,7 @@
   },
   {
     "name": "DSC05318",
-    "title": "Downtown at Dawn",
+    "title": "Downtown at dawn",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05318.jpg",
     "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC05318.thumb.jpg",
     "width": 4000,
@@ -160,24 +160,8 @@
     }
   },
   {
-    "name": "DSC04379",
-    "title": "What's she looking at",
-    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.jpg",
-    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.thumb.jpg",
-    "width": 4340,
-    "height": 3255,
-    "date": "2026-06-10",
-    "settings": {
-      "body": "Sony ILCE-7M3",
-      "lens": "FE 85mm F1.8",
-      "iso": "ISO 100",
-      "shutter": "1/320s",
-      "aperture": "f/1.8"
-    }
-  },
-  {
     "name": "DSC04749",
-    "title": "The Flock",
+    "title": "The flock",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04749.jpg",
     "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04749.thumb.jpg",
     "width": 5280,
@@ -208,8 +192,24 @@
     }
   },
   {
+    "name": "DSC04379",
+    "title": "What's she looking at",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC04379.thumb.jpg",
+    "width": 4340,
+    "height": 3255,
+    "date": "2026-06-10",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "FE 85mm F1.8",
+      "iso": "ISO 100",
+      "shutter": "1/320s",
+      "aperture": "f/1.8"
+    }
+  },
+  {
     "name": "DSC03721",
-    "title": "The World is my Bench",
+    "title": "The world is my bench",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03721.jpg",
     "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03721.thumb.jpg",
     "width": 3801,
@@ -225,7 +225,7 @@
   },
   {
     "name": "DSC03595",
-    "title": "Dogs are Good Subjects too",
+    "title": "Dogs are good subjects too",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03595.jpg",
     "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC03595.thumb.jpg",
     "width": 4020,

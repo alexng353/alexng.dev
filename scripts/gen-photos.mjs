@@ -119,7 +119,14 @@ function isBasePhoto(f) {
 
 /** Newest-first by capture date; undated last; filename as the stable tiebreak. */
 function bySortOrder(a, b) {
-  if (a.date && b.date) return a.date < b.date ? 1 : -1;
+  // Newest first. Equal dates must fall through to the name tiebreak: returning
+  // -1 for both cmp(a,b) and cmp(b,a) is an inconsistent comparator, and the
+  // resulting order then depends on readdir order, so a whole shoot shot on one
+  // day would reshuffle between runs and churn the manifest diff.
+  if (a.date && b.date) {
+    if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+    return a.name < b.name ? 1 : -1;
+  }
   if (a.date) return -1;
   if (b.date) return 1;
   return a.name < b.name ? -1 : 1;
