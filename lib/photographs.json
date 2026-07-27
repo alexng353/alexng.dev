@@ -1,5 +1,69 @@
 [
   {
+    "name": "DSC01021_01",
+    "title": "Dance all night",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC01021_01.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC01021_01.thumb.jpg",
+    "width": 4024,
+    "height": 6048,
+    "date": "2026-07-18",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 100",
+      "shutter": "1/250s",
+      "aperture": "f/1.4"
+    }
+  },
+  {
+    "name": "DSC00990",
+    "title": "Off the shoulder",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00990.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00990.thumb.jpg",
+    "width": 4020,
+    "height": 3015,
+    "date": "2026-07-18",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 100",
+      "shutter": "1/250s",
+      "aperture": "f/1.4"
+    }
+  },
+  {
+    "name": "DSC00919",
+    "title": "Lucky timing",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00919.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00919.thumb.jpg",
+    "width": 4024,
+    "height": 6048,
+    "date": "2026-07-18",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 640",
+      "shutter": "1/640s",
+      "aperture": "f/1.4"
+    }
+  },
+  {
+    "name": "DSC00871",
+    "title": "Celebration",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00871.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC00871.thumb.jpg",
+    "width": 4023,
+    "height": 5364,
+    "date": "2026-07-18",
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 640",
+      "shutter": "1/320s",
+      "aperture": "f/2.8"
+    }
+  },
+  {
     "name": "DSC09619",
     "title": "Red Curtain",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC09619.jpg",
