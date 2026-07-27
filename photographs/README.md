@@ -16,6 +16,18 @@ DSC03595.jpg        full resolution (uploaded; lightbox source)
 DSC03595.thumb.jpg  generated thumbnail (uploaded; grid source)
 ```
 
+## Removing a photo
+
+Delete its `.jpg` (and `.thumb.jpg`) from here and run `bun run photos`. The
+manifest drops it and the prune step deletes both objects from R2, so the
+full-resolution original stops being fetchable at its CDN URL rather than just
+disappearing from the grid. Cloudflare will keep serving the old bytes from its
+edge cache until `max-age` (4h) expires; purge the URL if you need it gone now.
+
+The prune refuses to run when `photographs/` is empty (a fresh clone has no
+image bytes — they're gitignored) or when it would delete more objects than it
+keeps. Pass `--force-prune` to override the second case.
+
 ## Adding / updating photos
 
 1. Drop full-resolution `.jpg` / `.jpeg` files in here (no `.thumb` suffix).

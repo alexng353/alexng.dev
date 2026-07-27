@@ -8,11 +8,13 @@
 //   3. Read each photo's metadata (title, settings, dimensions, capture date)
 //      and write the committed manifest lib/photographs.json, with image URLs
 //      pointing at the CDN.
-//   4. With --upload, push the photos, thumbnails, and manifest to R2 via rclone.
+//   4. With --upload, push the photos, thumbnails, and manifest to R2 via rclone,
+//      then delete any remote image with no local counterpart.
 //
-//   bun run photos             # strip + thumbnail + rewrite the manifest + sync R2
-//   bun run photos --force     # also rebuild every thumbnail
-//   bun run photos:local       # local-only regenerate, no R2 sync
+//   bun run photos               # strip + thumbnail + rewrite the manifest + sync R2
+//   bun run photos --force       # also rebuild every thumbnail
+//   bun run photos --force-prune # allow a prune that removes more than it keeps
+//   bun run photos:local         # local-only regenerate, no R2 sync
 //
 // The running site never touches these files — it reads lib/photographs.json
 // and loads the bytes straight from the CDN. Config (env, with defaults):
@@ -50,6 +52,7 @@ const BASE_URL = `${CDN_HOST}/${PREFIX}`;
 
 const force = process.argv.includes("--force");
 const doUpload = process.argv.includes("--upload");
+const forcePrune = process.argv.includes("--force-prune");
 
 function requireTool(bin, hint) {
   try {
@@ -233,6 +236,72 @@ function uploadPhotos(r2) {
   execFileSync("rclone", r2.copyPhotos, { stdio: "inherit", env: r2.env });
 }
 
+/**
+ * Remote objects with no local counterpart. Only ever selects image files:
+ * photographs.json lives in this same prefix, and no combination of inputs
+ * should be able to put it on a deletion list.
+ */
+export function orphanKeys(remoteNames, keepNames) {
+  const keep = new Set(keepNames);
+  return remoteNames.filter(
+    (name) => /\.jpe?g$/i.test(name) && !keep.has(name),
+  );
+}
+
+/**
+ * Delete photos that have left the manifest. `rclone copy` never removes
+ * anything, so without this a photo dropped from photographs/ disappears from
+ * the site while its full-resolution original stays publicly fetchable at the
+ * CDN URL it always had — hidden rather than gone.
+ */
+function pruneR2(r2, keepNames) {
+  // Image bytes are gitignored, so a fresh clone has an empty photographs/.
+  // That means "nothing to compare against", not "delete the bucket".
+  if (keepNames.length === 0) {
+    console.error(
+      `\n✗ Skipping prune: no local photos to compare against ${r2.dest}.`,
+    );
+    return;
+  }
+
+  const listed = execFileSync("rclone", ["lsf", r2.dest, "--files-only"], {
+    env: r2.env,
+    encoding: "utf8",
+  });
+  const orphans = orphanKeys(
+    listed
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean),
+    keepNames,
+  );
+
+  if (orphans.length === 0) {
+    console.log(`\n✓ No orphaned objects at ${r2.dest}.`);
+    return;
+  }
+  if (!forcePrune && orphans.length > keepNames.length) {
+    console.error(
+      `\n✗ Skipping prune: ${orphans.length} object(s) would go while only ${keepNames.length} stay.\n` +
+        "  That reads like a half-populated photographs/ rather than a deletion:\n" +
+        orphans.map((name) => `    ${name}`).join("\n") +
+        "\n  Re-run with --force-prune if it really is one.",
+    );
+    return;
+  }
+
+  console.log(
+    `\nPruning ${orphans.length} orphaned object(s) from ${r2.dest} …`,
+  );
+  for (const name of orphans) {
+    execFileSync("rclone", ["deletefile", `${r2.dest}/${name}`], {
+      stdio: "inherit",
+      env: r2.env,
+    });
+    console.log(`  removed ${name}`);
+  }
+}
+
 function uploadManifest(r2) {
   console.log(`\nUploading manifest to ${r2.dest}/photographs.json …`);
   execFileSync("rclone", r2.copyManifest, { stdio: "inherit", env: r2.env });
@@ -254,6 +323,8 @@ async function main() {
 
   const sources = fs.readdirSync(PHOTOS_DIR).filter(isBasePhoto);
   const entries = [];
+  // Every object this run expects to exist remotely, photo + thumbnail.
+  const published = [];
   let builtThumbs = 0;
 
   for (const file of sources) {
@@ -272,6 +343,7 @@ async function main() {
 
     const buffer = await fs.promises.readFile(srcPath);
     const { exif, xmp, width, height } = await inspect(buffer);
+    published.push(file, thumbFile);
 
     entries.push({
       name,
@@ -303,7 +375,12 @@ async function main() {
     `✓ ${path.relative(ROOT, MANIFEST)} — ${entries.length} photo(s), ${builtThumbs} thumbnail(s) built`,
   );
 
-  if (r2) uploadManifest(r2);
+  // Prune last: the manifest that no longer references these objects is already
+  // live, so there is never a moment where the site points at deleted bytes.
+  if (r2) {
+    uploadManifest(r2);
+    pruneR2(r2, published);
+  }
 }
 
 if (import.meta.path === Bun.main) {

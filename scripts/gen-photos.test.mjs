@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { rcloneSyncCommands } from "./gen-photos.mjs";
+import { orphanKeys, rcloneSyncCommands } from "./gen-photos.mjs";
 
 describe("photo R2 sync commands", () => {
   test("uploads and verifies photos plus manifest", () => {
@@ -46,6 +46,39 @@ describe("photo R2 sync commands", () => {
         "--one-way",
         "--size-only",
       ],
+    ]);
+  });
+});
+
+describe("orphaned R2 objects", () => {
+  const remote = [
+    "DSC00001.jpg",
+    "DSC00001.thumb.jpg",
+    "DSC00002.jpg",
+    "DSC00002.thumb.jpg",
+    "photographs.json",
+  ];
+
+  test("selects both objects of a photo that left the manifest", () => {
+    expect(orphanKeys(remote, ["DSC00001.jpg", "DSC00001.thumb.jpg"])).toEqual([
+      "DSC00002.jpg",
+      "DSC00002.thumb.jpg",
+    ]);
+  });
+
+  test("never selects the manifest, even when nothing is kept", () => {
+    expect(orphanKeys(remote, [])).not.toContain("photographs.json");
+    expect(orphanKeys(["photographs.json"], [])).toEqual([]);
+  });
+
+  test("leaves a fully-synced prefix alone", () => {
+    expect(orphanKeys(remote, remote)).toEqual([]);
+  });
+
+  test("matches .jpeg as well as .jpg", () => {
+    expect(orphanKeys(["a.jpeg", "b.JPG", "notes.txt"], [])).toEqual([
+      "a.jpeg",
+      "b.JPG",
     ]);
   });
 });
