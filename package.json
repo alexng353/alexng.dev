@@ -34,7 +34,7 @@
     "rehype-highlight": "^7.0.2",
     "remark-gfm": "^4.0.1",
     "server-only": "^0.0.1",
-    "sharp": "^0.33.5",
+    "sharp": "^0.35.3",
     "usehooks-ts": "^2.16.0"
   },
   "devDependencies": {
