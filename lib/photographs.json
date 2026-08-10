@@ -1,5 +1,100 @@
 [
   {
+    "name": "DSC02203",
+    "title": "Well maintained",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02203.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02203.thumb.jpg",
+    "width": 5680,
+    "height": 3195,
+    "date": "2026-08-06",
+    "tags": [
+      "cars"
+    ],
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 400",
+      "shutter": "1/320s",
+      "aperture": "f/2.8"
+    }
+  },
+  {
+    "name": "DSC02171",
+    "title": "Drive it like you stole it",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02171.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02171.thumb.jpg",
+    "width": 6046,
+    "height": 3023,
+    "date": "2026-08-06",
+    "tags": [
+      "cars"
+    ],
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 400",
+      "shutter": "1/60s",
+      "aperture": "f/8"
+    }
+  },
+  {
+    "name": "DSC02081",
+    "title": "Nothin' mid about it",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02081.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02081.thumb.jpg",
+    "width": 6047,
+    "height": 2627,
+    "date": "2026-08-06",
+    "tags": [
+      "cars"
+    ],
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 400",
+      "shutter": "1/250s",
+      "aperture": "f/9"
+    }
+  },
+  {
+    "name": "DSC02058",
+    "title": "あ〜ぼ〜ム⏾ン",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02058.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02058.thumb.jpg",
+    "width": 6047,
+    "height": 2573,
+    "date": "2026-08-06",
+    "tags": [
+      "cars"
+    ],
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 400",
+      "shutter": "1/200s",
+      "aperture": "f/8"
+    }
+  },
+  {
+    "name": "DSC02054",
+    "title": "Getting started young",
+    "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02054.jpg",
+    "thumb": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC02054.thumb.jpg",
+    "width": 5987,
+    "height": 3931,
+    "date": "2026-08-06",
+    "tags": [
+      "cars"
+    ],
+    "settings": {
+      "body": "Sony ILCE-7M3",
+      "lens": "50mm F1.4 DG HSM | Art 018",
+      "iso": "ISO 400",
+      "shutter": "1/800s",
+      "aperture": "f/8"
+    }
+  },
+  {
     "name": "DSC09619",
     "title": "Red curtain",
     "src": "https://cdn.alexng.dev/assets/alexng.dev/photos/DSC09619.jpg",

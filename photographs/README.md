@@ -31,7 +31,8 @@ appends and the photo ends up in two galleries.)
 
 Tags are lower-cased and become URL segments: `people` → `/photography/people`,
 a static page built from the same manifest. Keep the vocabulary small and give
-each photo one tag — the current set is `people`, `nature`, `city`, `animals`.
+each photo one tag — the current set is `people`, `nature`, `city`, `animals`,
+`cars`.
 A tag needs at least `MIN_PHOTOS_PER_TAG` photos (see `lib/photos.ts`) before it
 gets a pill and a page, so a one-off keyword can't strand a visitor on a page
 thinner than the gallery they left.
